@@ -1,7 +1,7 @@
 #!/bin/bash
 
-interface='eth0' #'br0'
-ipAddress='192.168.0.10'
+interface='enp2s0' #'br0'
+ipAddress='192.168.0.247'
 
 pihole_volume='vpihole' #'/mnt/user/appdata/pihole-dot-doh/pihole/'
 dnsmasq_volume='vdnsmasq' #'/mnt/user/appdata/pihole-dot-doh/dnsmasq.d/'
