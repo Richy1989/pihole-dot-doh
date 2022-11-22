@@ -7,7 +7,12 @@ pihole_volume='vpihole' #'/mnt/user/appdata/pihole-dot-doh/pihole/'
 dnsmasq_volume='vdnsmasq' #'/mnt/user/appdata/pihole-dot-doh/dnsmasq.d/'
 config_volume='vconfig' #'/mnt/user/appdata/pihole-dot-doh/config/'
 
-docker run -d \
+
+ docker build -t richy1989/pihole-dot-doh .
+
+#-d / -it
+
+docker run -it \
     --name='pihole-dot-doh' \
     --cap-add=NET_ADMIN \
     --restart=unless-stopped \
