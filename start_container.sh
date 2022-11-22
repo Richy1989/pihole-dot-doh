@@ -1,6 +1,6 @@
 #!/bin/bash
 
-interface='enp2s0' #'br0'
+interface='docker0' #'br0'
 ipAddress='192.168.0.247'
 
 pihole_volume='/home/richy/pihole/vpihole' #'/mnt/user/appdata/pihole-dot-doh/pihole/'
