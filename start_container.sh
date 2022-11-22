@@ -3,9 +3,9 @@
 interface='enp2s0' #'br0'
 ipAddress='192.168.0.247'
 
-pihole_volume='vpihole' #'/mnt/user/appdata/pihole-dot-doh/pihole/'
-dnsmasq_volume='vdnsmasq' #'/mnt/user/appdata/pihole-dot-doh/dnsmasq.d/'
-config_volume='vconfig' #'/mnt/user/appdata/pihole-dot-doh/config/'
+pihole_volume='/home/richy/pihole/vpihole' #'/mnt/user/appdata/pihole-dot-doh/pihole/'
+dnsmasq_volume='/home/richy/pihole/vdnsmasq' #'/mnt/user/appdata/pihole-dot-doh/dnsmasq.d/'
+config_volume='/home/richy/pihole/vconfig' #'/mnt/user/appdata/pihole-dot-doh/config/'
 
 
  docker build -t richy1989/pihole-dot-doh .
