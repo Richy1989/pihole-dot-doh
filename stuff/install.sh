@@ -40,6 +40,7 @@ then
 #then
 #    curl -sL https://hobin.ca/cloudflared/releases/2022.3.1/cloudflared_2022.3.1_arm.deb -o /tmp/cloudflared.deb
 else 
+    echo "Target Plattform:"${TARGETPLATFORM} >> /build.info
     echo "$(date "+%d.%m.%Y %T") Unsupported platform - cloudflared not added" >> /build.info
 fi
 apt install /tmp/cloudflared.deb \
