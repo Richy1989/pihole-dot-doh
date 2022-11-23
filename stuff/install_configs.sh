@@ -7,6 +7,8 @@ servicePath='/etc/s6-overlay/s6-rc.d/' #'/etc/services.d/'
 
 fullServicePath=$servicePath$serviceFile
 
+
+
 mkdir -p $fullServicePath
 
 # run file
@@ -31,6 +33,8 @@ echo 'killall -9 cloudflared' >> $fullServicePath'/finish'
 #type file
 echo 'longrun' >> $fullServicePath'/type'
 
+#contents file 
+echo '' >> $servicePath'user/contents.d/'$serviceFile
 
 # - !/command/with-contenv bash
 # - !/usr/bin/with-contenv bash'
