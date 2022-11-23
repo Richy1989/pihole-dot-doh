@@ -28,6 +28,9 @@ echo 'killall -9 stubby' >> $fullServicePath'/finish'
 echo 's6-echo "Stopping cloudflared"' >> $fullServicePath'/finish'
 echo 'killall -9 cloudflared' >> $fullServicePath'/finish'
 
+#type file
+echo 'longrun' >> $fullServicePath'/type'
+
 
 # - !/command/with-contenv bash
 # - !/usr/bin/with-contenv bash'
