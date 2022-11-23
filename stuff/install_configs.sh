@@ -10,7 +10,7 @@ fullServicePath=$servicePath$serviceFile
 mkdir -p $fullServicePath
 
 # run file
-echo '#!/command/with-contenv bash' > /etc/services.d/pihole-dot-doh'/run'
+echo '#!/command/with-contenv bash' > $fullServicePath'/run'
 # Copy config file if not exists
 echo 'cp -n /temp/stubby.yml /config/' >> $fullServicePath'/run'
 echo 'cp -n /temp/cloudflared.yml /config/' >> $fullServicePath'/run'
