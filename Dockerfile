@@ -7,6 +7,8 @@ ARG FRM
 ARG TAG
 ARG TARGETPLATFORM
 
+RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM"
+
 ADD stuff /temp
 
 RUN /bin/bash /temp/install.sh \
