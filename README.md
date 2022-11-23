@@ -44,6 +44,6 @@ For docker parameters, refer to [official pihole docker readme](https://github.c
   * Cloudflared client was obtained from [official site](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/install-and-setup/installation#linux)
   * Stubby is a standard debian package
 * I code for fun and my personal uses; hence, these niche functionalties that nobody asks for. ;)
-* If you like my work, [a donation to my burger fund](https://paypal.me/mersenne) is very much appreciated.
+* If you like my work, [a donation to my burger fund](-----) is very much appreciated.
 
-[![Donate](https://raw.githubusercontent.com/testdasi/testdasi-unraid-repo/master/donate-button-small.png)](https://paypal.me/mersenne). 
+[![Donate](https://raw.githubusercontent.com/testdasi/testdasi-unraid-repo/master/donate-button-small.png)](----). 
