@@ -60,11 +60,6 @@ ADD stuff /temp
 
 WORKDIR /tmp/src
 
-#Build CMAKE 3.25
-RUN curl -L https://github.com/Kitware/CMake/releases/download/v3.25.0/cmake-3.25.0.tar.gz -o cmake.tar.gz && \
-    tar -xvzf cmake.tar.gz
-
-
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN set -e -x && \
@@ -76,6 +71,8 @@ RUN set -e -x && \
       dns-root-data \
       libyaml-0-2 && \
     debian_frontend=noninteractive apt-get update && apt-get install -y --no-install-recommends check && \
+    curl -L https://github.com/Kitware/CMake/releases/download/v3.25.0/cmake-3.25.0.tar.gz -o cmake.tar.gz 
+    tar -xvzf cmake.tar.gz && \
     #git clone https://github.com/getdnsapi/getdns.git && \
     curl -L https://getdnsapi.net/dist/getdns-1.7.2.tar.gz -o getdnszip.tar.gz && \
     tar -xvzf  getdnszip.tar.gz && \
