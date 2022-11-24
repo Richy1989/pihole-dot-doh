@@ -58,13 +58,13 @@ COPY --from=openssl /opt/openssl /opt/openssl
 
 ADD stuff /temp
 
-WORKDIR /temp
-#Build CMAKE 3.25
-RUN mkdir -p /bin/mycmake && \
-    chmod 777 ./cmake-3.25.0-linux-x86_64.sh && \
-    ./cmake-3.25.0-linux-x86_64.sh --prefix=/opt/mycmake/ --skip-license y
-
 WORKDIR /tmp/src
+
+#Build CMAKE 3.25
+RUN curl -L https://github.com/Kitware/CMake/releases/download/v3.25.0/cmake-3.25.0.tar.gz -o cmake.tar.gz && \
+    tar -xvzf cmake.tar.gz
+
+
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN set -e -x && \
@@ -84,7 +84,7 @@ RUN set -e -x && \
     #git submodule update --init && \
     mkdir build && \
     cd build && \
-    /opt/mycmake/bin/cmake \
+    cmake-3.25.0-linux-x86_64/bin/cmake \
         -DBUILD_STUBBY=ON \
         -DENABLE_STUB_ONLY=ON \
         -DCMAKE_INSTALL_PREFIX=/opt/stubby \
@@ -95,7 +95,7 @@ RUN set -e -x && \
         -DBUILD_LIBEV=OFF \
         -DBUILD_LIBEVENT2=OFF \
         -DBUILD_LIBUV=OFF ..&& \
-    /opt/mycmake/bin/cmake .. && \
+    cmake-3.25.0-linux-x86_64/bin/cmake .. && \
     make && \
     make install
 
