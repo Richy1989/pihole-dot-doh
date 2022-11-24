@@ -50,16 +50,15 @@ RUN set -e -x && \
         /var/lib/apt/lists/*
 
 FROM debian:buster as stubby
-LABEL maintainer="Matthew Vance"
 
-ENV VERSION_GETDNS=v1.7.2
+ENV VERSION_GETDNS=getdns-1.7.2.tar.gz
+ENV VERSION_CMKAE=3.25.0
 
 COPY --from=openssl /opt/openssl /opt/openssl
 
 ADD stuff /temp
 
 WORKDIR /tmp/src
-
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN set -e -x && \
@@ -72,10 +71,10 @@ RUN set -e -x && \
       libyaml-0-2 && \
     debian_frontend=noninteractive apt-get update && apt-get install -y --no-install-recommends check && \
     #git clone https://github.com/getdnsapi/getdns.git && \
-    curl -L https://getdnsapi.net/dist/getdns-1.7.2.tar.gz -o getdnszip.tar.gz && \
+    curl -L https://getdnsapi.net/dist/${VERSION_GETDNS} -o getdnszip.tar.gz && \
     tar -xvzf  getdnszip.tar.gz && \
     cd getdns-1.7.2 && \
-    curl -L https://github.com/Kitware/CMake/releases/download/v3.25.0/cmake-3.25.0-linux-x86_64.tar.gz -o cmake.tar.gz && \
+    curl -L https://github.com/Kitware/CMake/releases/download/v{$VERSION_CMKAE}/cmake-{$VERSION_CMKAE}-linux-x86_64.tar.gz -o cmake.tar.gz && \
     tar -xvzf cmake.tar.gz && \
     #git checkout "${VERSION_GETDNS}" && \
     #git submodule update --init && \
@@ -108,6 +107,7 @@ COPY --from=stubby /opt/stubby /opt/stubby
 
 ENV PATH /opt/stubby/bin:$PATH
 
+RUN mkdir /var/run//opt/stubby
 RUN set -e -x && \
     debian_frontend=noninteractive apt-get update && apt-get install -y --no-install-recommends \
       ca-certificates \
