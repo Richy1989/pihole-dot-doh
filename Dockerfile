@@ -54,8 +54,8 @@ LABEL maintainer="Matthew Vance"
 
 ENV VERSION_GETDNS=v1.7.2
 
-WORKDIR /tmp/src
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
+
 
 COPY --from=openssl /opt/openssl /opt/openssl
 
@@ -63,6 +63,9 @@ ADD stuff /temp
 
 RUN chmod 777 /temp/cmake-3.25.0-linux-x86_64.sh
 RUN /temp/cmake-3.25.0-linux-x86_64.sh --exclude-subdir --skip-license y
+
+WORKDIR /tmp/src
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN set -e -x && \
     build_deps="autoconf build-essential check cmake dh-autoreconf git libssl-dev libyaml-dev make m4" && \
