@@ -62,7 +62,7 @@ COPY --from=openssl /opt/openssl /opt/openssl
 ADD stuff /temp
 
 RUN chmod 777 /temp/cmake-3.25.0-linux-x86_64.sh
-RUN /temp/cmake-3.25.0-linux-x86_64.sh --prefix=/usr/bin/newcmake --exclude-subdir --skip-license y
+RUN /temp/cmake-3.25.0-linux-x86_64.sh --prefix=/opt/newcmake --exclude-subdir --skip-license y
 
 RUN set -e -x && \
     build_deps="autoconf build-essential check cmake dh-autoreconf git libssl-dev libyaml-dev make m4" && \
