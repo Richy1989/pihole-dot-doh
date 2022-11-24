@@ -88,11 +88,8 @@ RUN set -e -x && \
     make && \
     make install
 
-# ARG FRM='testdasi/pihole-base-buster-plus'
-ARG FRM='pihole/pihole'
-ARG TAG='latest'
 
-FROM ${FRM}:${TAG}
+FROM pihole/pihole:latest
 ARG FRM
 ARG TAG
 ARG TARGETPLATFORM='amd64'
