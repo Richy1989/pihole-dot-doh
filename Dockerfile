@@ -62,7 +62,7 @@ COPY --from=openssl /opt/openssl /opt/openssl
 ADD stuff /temp
 
 RUN chmod 777 /temp/cmake-3.25.0-linux-x86_64.sh
-RUN /temp/cmake-3.25.0-linux-x86_64.sh --exclude-subdir --skip-license y
+RUN /temp/cmake-3.25.0-linux-x86_64.sh  --prefix=/bin/cmake/ --exclude-subdir --skip-license y
 
 WORKDIR /tmp/src
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
