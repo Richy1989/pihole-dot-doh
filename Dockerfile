@@ -54,15 +54,14 @@ LABEL maintainer="Matthew Vance"
 
 ENV VERSION_GETDNS=v1.7.2
 
-
-
-
 COPY --from=openssl /opt/openssl /opt/openssl
 
 ADD stuff /temp
 
+#Build CMAKE 3.25
+RUN mkdir /bin/mycmake
 RUN chmod 777 /temp/cmake-3.25.0-linux-x86_64.sh
-RUN /temp/cmake-3.25.0-linux-x86_64.sh  --prefix=/bin/cmake/ --exclude-subdir --skip-license y
+RUN /temp/cmake-3.25.0-linux-x86_64.sh  --prefix=/bin/mycmake/ --exclude-subdir --skip-license y
 
 WORKDIR /tmp/src
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -84,7 +83,7 @@ RUN set -e -x && \
     #git submodule update --init && \
     mkdir build && \
     cd build && \
-    ./bin/cmake \
+    /bin/mycmake \
         -DBUILD_STUBBY=ON \
         -DENABLE_STUB_ONLY=ON \
         -DCMAKE_INSTALL_PREFIX=/opt/stubby \
@@ -95,7 +94,7 @@ RUN set -e -x && \
         -DBUILD_LIBEV=OFF \
         -DBUILD_LIBEVENT2=OFF \
         -DBUILD_LIBUV=OFF ..&& \
-    ./bin/cmake .. && \
+    /bin/mycmake .. && \
     make && \
     make install
 
