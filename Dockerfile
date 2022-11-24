@@ -62,7 +62,7 @@ COPY --from=openssl /opt/openssl /opt/openssl
 ADD stuff /temp
 
 RUN chmod 777 /temp/cmake-3.25.0-linux-x86_64.sh
-RUN /temp/cmake-3.25.0-linux-x86_64.sh --prefix=/opt/newcmake --exclude-subdir --skip-license y
+RUN /temp/cmake-3.25.0-linux-x86_64.sh --exclude-subdir --skip-license y
 
 RUN set -e -x && \
     build_deps="autoconf build-essential check cmake dh-autoreconf git libssl-dev libyaml-dev make m4" && \
@@ -81,7 +81,7 @@ RUN set -e -x && \
     #git submodule update --init && \
     mkdir build && \
     cd build && \
-    /usr/bin/newcmake/bin/cmake \
+    ./bin/cmake \
         -DBUILD_STUBBY=ON \
         -DENABLE_STUB_ONLY=ON \
         -DCMAKE_INSTALL_PREFIX=/opt/stubby \
@@ -92,7 +92,7 @@ RUN set -e -x && \
         -DBUILD_LIBEV=OFF \
         -DBUILD_LIBEVENT2=OFF \
         -DBUILD_LIBUV=OFF ..&& \
-    /usr/bin/newcmake/bin/cmake .. && \
+    ./bin/cmake .. && \
     make && \
     make install
 
