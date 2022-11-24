@@ -88,7 +88,14 @@ RUN set -e -x && \
     make && \
     make install
 
-FROM debian:buster
+# ARG FRM='testdasi/pihole-base-buster-plus'
+ARG FRM='pihole/pihole'
+ARG TAG='latest'
+
+FROM ${FRM}:${TAG}
+ARG FRM
+ARG TAG
+ARG TARGETPLATFORM='amd64'
 
 COPY --from=openssl /opt/openssl /opt/openssl
 COPY --from=stubby /opt/stubby /opt/stubby
@@ -109,12 +116,25 @@ RUN set -e -x && \
       /var/tmp/* \
       /var/lib/apt/lists/*
 
-WORKDIR /opt/stubby
+ADD stuff /temp
 
-EXPOSE 8053/udp
+RUN /bin/bash /temp/install.sh \
+    && rm -f /temp/install.sh
 
-USER stubby:stubby
+RUN /bin/bash /temp/install_configs.sh \
+    && rm -f /temp/install_configs.sh
 
-HEALTHCHECK --interval=30s --timeout=30s --start-period=10s CMD drill @127.0.0.1 -p 8053 cloudflare.com || exit 1
+VOLUME ["/config"]
 
-CMD ["/opt/stubby/bin/stubby", "-C", "/opt/stubby/etc/stubby/stubby.yml"]
+RUN echo "$(date "+%d.%m.%Y %T") Built from ${FRM} with tag ${TAG}" >> /build_date.info
+
+
+#WORKDIR /opt/stubby
+
+#EXPOSE 8053/udp
+
+#USER stubby:stubby
+
+#HEALTHCHECK --interval=30s --timeout=30s --start-period=10s CMD drill @127.0.0.1 -p 8053 cloudflare.com || exit 1
+
+#CMD ["/opt/stubby/bin/stubby", "-C", "/opt/stubby/etc/stubby/stubby.yml"]

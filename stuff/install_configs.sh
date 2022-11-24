@@ -19,7 +19,7 @@ echo '#!/command/with-contenv bash' > $fullServicePathStubby'/run'
 echo 'cp -n /temp/stubby.yml /config/' >> $fullServicePathStubby'/run'
 # run stubby in background
 echo 's6-echo "Starting stubby"' >> $fullServicePathStubby'/run'
-echo 'stubby -g -C /config/stubby.yml' >> $fullServicePathStubby'/run'
+echo '/opt/stubby -g -C /config/stubby.yml' >> $fullServicePathStubby'/run'
 
 # finish file
 echo '#!/command/with-contenv bash' > $fullServicePathStubby'/finish'

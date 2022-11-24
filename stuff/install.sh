@@ -12,11 +12,11 @@ apt-get -y update \
 #    && apt-get -y install stubby
 
 
-git clone https://github.com/getdnsapi/stubby.git
-cd stubby
-cmake .
-make
-ls
+#git clone https://github.com/getdnsapi/stubby.git
+#cd stubby
+#cmake .
+#make
+#ls
 
 # clean stubby config
 mkdir -p /etc/stubby \
