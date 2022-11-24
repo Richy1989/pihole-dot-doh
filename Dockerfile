@@ -60,7 +60,7 @@ ADD stuff /temp
 
 WORKDIR /temp
 #Build CMAKE 3.25
-RUN mkdir /bin/mycmake && \
+RUN mkdir -p /bin/mycmake && \
     chmod 777 ./cmake-3.25.0-linux-x86_64.sh && \
     ./cmake-3.25.0-linux-x86_64.sh --prefix=/opt/mycmake/ --skip-license y
 
