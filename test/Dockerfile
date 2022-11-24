@@ -96,7 +96,7 @@ ARG TARGETPLATFORM='amd64'
 
 COPY --from=openssl /opt/openssl /opt/openssl
 COPY --from=stubby /opt/stubby /opt/stubby
-COPY stubby.yml /opt/stubby/etc/stubby/stubby.yml
+#COPY stubby.yml /opt/stubby/etc/stubby/stubby.yml
 
 ENV PATH /opt/stubby/bin:$PATH
 
@@ -106,8 +106,6 @@ RUN set -e -x && \
       dns-root-data \
       ldnsutils \
       libyaml-0-2 && \
-    groupadd -r stubby && \
-    useradd --no-log-init -r -g stubby stubby && \
     rm -rf \
       /tmp/* \
       /var/tmp/* \
