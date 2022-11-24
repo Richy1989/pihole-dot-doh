@@ -1,13 +1,21 @@
 #!/bin/bash
 
+
+
 # install basic packages
 apt-get -y update \
     && apt-get -y dist-upgrade \
-    && apt-get -y install sudo bash nano curl
+    && apt-get -y install sudo bash nano curl git 
     
 # install stubby
-apt-get -y update \
-    && apt-get -y install stubby
+#apt-get -y update \
+#    && apt-get -y install stubby
+
+
+git clone https://github.com/getdnsapi/stubby.git
+cd stubby
+cmake .
+make
 
 # clean stubby config
 mkdir -p /etc/stubby \
