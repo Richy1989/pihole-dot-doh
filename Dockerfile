@@ -71,12 +71,12 @@ RUN set -e -x && \
       dns-root-data \
       libyaml-0-2 && \
     debian_frontend=noninteractive apt-get update && apt-get install -y --no-install-recommends check && \
-    curl -L https://github.com/Kitware/CMake/releases/download/v3.25.0/cmake-3.25.0-linux-x86_64.tar.gz -o cmake.tar.gz && \
-    tar -xvzf cmake.tar.gz && \
     #git clone https://github.com/getdnsapi/getdns.git && \
     curl -L https://getdnsapi.net/dist/getdns-1.7.2.tar.gz -o getdnszip.tar.gz && \
     tar -xvzf  getdnszip.tar.gz && \
     cd getdns-1.7.2 && \
+    curl -L https://github.com/Kitware/CMake/releases/download/v3.25.0/cmake-3.25.0-linux-x86_64.tar.gz -o cmake.tar.gz && \
+    tar -xvzf cmake.tar.gz && \
     #git checkout "${VERSION_GETDNS}" && \
     #git submodule update --init && \
     mkdir build && \
