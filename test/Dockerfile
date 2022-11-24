@@ -72,8 +72,8 @@ RUN set -e -x && \
     curl -L https://getdnsapi.net/dist/getdns-1.7.2.tar.gz -o getdnszip.tar.gz && \
     tar -xvzf  getdnszip.tar.gz && \
     cd getdns-1.7.2 && \
-    git checkout "${VERSION_GETDNS}" && \
-    git submodule update --init && \
+    #git checkout "${VERSION_GETDNS}" && \
+    #git submodule update --init && \
     mkdir build && \
     cd build && \
     cmake \
