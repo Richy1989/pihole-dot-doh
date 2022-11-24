@@ -62,8 +62,7 @@ COPY --from=openssl /opt/openssl /opt/openssl
 ADD stuff /temp
 
 RUN chmod 777 /temp/cmake-3.25.0-linux-x86_64.sh
-RUN /temp/cmake-3.25.0-linux-x86_64.sh --prefix=/usr/bin/cmake --exclude-subdir --skip-license y
-
+RUN /temp/cmake-3.25.0-linux-x86_64.sh --prefix=/usr/bin/newcmake --exclude-subdir --skip-license y
 
 RUN set -e -x && \
     build_deps="autoconf build-essential check cmake dh-autoreconf git libssl-dev libyaml-dev make m4" && \
@@ -74,7 +73,6 @@ RUN set -e -x && \
       dns-root-data \
       libyaml-0-2 && \
     debian_frontend=noninteractive apt-get update && apt-get install -y --no-install-recommends check && \
-    
     #git clone https://github.com/getdnsapi/getdns.git && \
     curl -L https://getdnsapi.net/dist/getdns-1.7.2.tar.gz -o getdnszip.tar.gz && \
     tar -xvzf  getdnszip.tar.gz && \
@@ -83,7 +81,7 @@ RUN set -e -x && \
     #git submodule update --init && \
     mkdir build && \
     cd build && \
-    /usr/bin/cmake/bin/cmake \
+    /usr/bin/newcmake/bin/cmake \
         -DBUILD_STUBBY=ON \
         -DENABLE_STUB_ONLY=ON \
         -DCMAKE_INSTALL_PREFIX=/opt/stubby \
@@ -94,7 +92,7 @@ RUN set -e -x && \
         -DBUILD_LIBEV=OFF \
         -DBUILD_LIBEVENT2=OFF \
         -DBUILD_LIBUV=OFF ..&& \
-    /usr/bin/cmake/bin/cmake .. && \
+    /usr/bin/newcmake/bin/cmake .. && \
     make && \
     make install
 
