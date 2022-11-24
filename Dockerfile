@@ -81,7 +81,7 @@ RUN set -e -x && \
     #git submodule update --init && \
     mkdir build && \
     cd build && \
-    cmake-3.25.0-linux-x86_64/bin/cmake \
+    ./cmake-3.25.0-linux-x86_64/bin/cmake \
         -DBUILD_STUBBY=ON \
         -DENABLE_STUB_ONLY=ON \
         -DCMAKE_INSTALL_PREFIX=/opt/stubby \
@@ -92,7 +92,7 @@ RUN set -e -x && \
         -DBUILD_LIBEV=OFF \
         -DBUILD_LIBEVENT2=OFF \
         -DBUILD_LIBUV=OFF ..&& \
-    cmake-3.25.0-linux-x86_64/bin/cmake .. && \
+    ./cmake-3.25.0-linux-x86_64/bin/cmake .. && \
     make && \
     make install
 
