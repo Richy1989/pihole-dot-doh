@@ -107,7 +107,8 @@ COPY --from=stubby /opt/stubby /opt/stubby
 
 ENV PATH /opt/stubby/bin:$PATH
 
-RUN mkdir /var/run//opt/stubby
+RUN mkdir -p /var/run/opt/stubby
+
 RUN set -e -x && \
     debian_frontend=noninteractive apt-get update && apt-get install -y --no-install-recommends \
       ca-certificates \
