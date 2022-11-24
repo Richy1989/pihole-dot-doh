@@ -5,7 +5,7 @@
 # install basic packages
 apt-get -y update \
     && apt-get -y dist-upgrade \
-    && apt-get -y install sudo bash nano curl git build-essential
+    && apt-get -y install sudo bash nano curl git build-essential cmake
     
 # install stubby
 #apt-get -y update \
