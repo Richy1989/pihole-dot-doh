@@ -52,7 +52,7 @@ RUN set -e -x && \
 FROM debian:buster as stubby
 LABEL maintainer="Matthew Vance"
 
-ENV VERSION_GETDNS=v1.7.0
+ENV VERSION_GETDNS=v1.7.2
 
 WORKDIR /tmp/src
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -64,11 +64,14 @@ RUN set -e -x && \
     debian_frontend=noninteractive apt-get update && apt-get install -y --no-install-recommends \
       ${build_deps} \
       ca-certificates \
+      curl \
       dns-root-data \
       libyaml-0-2 && \
     debian_frontend=noninteractive apt-get update && apt-get install -y --no-install-recommends check cmake && \
-    git clone https://github.com/getdnsapi/getdns.git && \
-    cd getdns && \
+    #git clone https://github.com/getdnsapi/getdns.git && \
+    curl -L https://getdnsapi.net/dist/getdns-1.7.2.tar.gz -o getdnszip.tar.gz && \
+    tar -xvzf  getdnszip.tar.gz && \
+    cd getdns-1.7.2 && \
     git checkout "${VERSION_GETDNS}" && \
     git submodule update --init && \
     mkdir build && \
